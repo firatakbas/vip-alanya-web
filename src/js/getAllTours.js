@@ -5,7 +5,7 @@ export default function getAllTours() {
         tours: [],
         async getTours() {
             try {
-                const response = await axios.get('/api/tours/toursCategory.json')
+                const response = await axios.get('/src/api/tours/toursCategory.json')
                 this.tours = response.data
             } catch (err) {
                 console.error('Tur Kategorileri Çekilemedi:', err)

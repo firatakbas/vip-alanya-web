@@ -15,7 +15,7 @@ export default function FilterTour() {
 
         async init() {
             try {
-                const { data } = await axios.get('/api/tours/tours.json');
+                const { data } = await axios.get('/src/api/tours/tours.json');
                 this.tours = data;
                 this.filtered = data;
 

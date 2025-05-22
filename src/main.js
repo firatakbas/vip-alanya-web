@@ -2,8 +2,8 @@ import './style.css'
 import Alpine from "alpinejs"
 import axios from "axios";
 
-import carousel from "./components/carousel.js";
-import gallery from "./components/gallery.js";
+import carousel from "./components_js/carousel.js";
+import gallery from "./components_js/gallery.js";
 import getAllTours from "./js/getAllTours.js";
 import FilterTour from "./js/FilterTour.js";
 
@@ -19,7 +19,7 @@ Alpine.data('FilterTour', FilterTour)
 Alpine.start()
 
 // Navbar yükle
-fetch('/layout/navbar.html')
+fetch('/src/layout/navbar.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('navbar').innerHTML = html
@@ -27,7 +27,7 @@ fetch('/layout/navbar.html')
     .catch(err => console.error('Navbar yüklenemedi:', err))
 
 // footer yükle
-fetch('/layout/footer.html')
+fetch('/src/layout/footer.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('footer').innerHTML = html
@@ -36,7 +36,7 @@ fetch('/layout/footer.html')
 
 
 // Carousel HTML'ini yükle
-fetch('/components/carousel.html')
+fetch('/src/components/carousel.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('carousel').innerHTML = html
@@ -44,7 +44,7 @@ fetch('/components/carousel.html')
 
 
 // Gallery HTML'ini yükle
-fetch('/components/gallery.html')
+fetch('/src/components/gallery.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('gallery').innerHTML = html
