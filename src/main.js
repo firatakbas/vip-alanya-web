@@ -19,7 +19,7 @@ Alpine.data('FilterTour', FilterTour)
 Alpine.start()
 
 // Navbar yükle
-fetch('/src/layout/navbar.html')
+fetch('/layout/navbar.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('navbar').innerHTML = html
@@ -27,7 +27,7 @@ fetch('/src/layout/navbar.html')
     .catch(err => console.error('Navbar yüklenemedi:', err))
 
 // footer yükle
-fetch('/src/layout/footer.html')
+fetch('/layout/footer.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('footer').innerHTML = html
@@ -36,7 +36,7 @@ fetch('/src/layout/footer.html')
 
 
 // Carousel HTML'ini yükle
-fetch('/src/components/carousel.html')
+fetch('/components/carousel.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('carousel').innerHTML = html
@@ -44,7 +44,7 @@ fetch('/src/components/carousel.html')
 
 
 // Gallery HTML'ini yükle
-fetch('/src/components/gallery.html')
+fetch('/components/gallery.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('gallery').innerHTML = html

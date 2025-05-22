@@ -5,8 +5,8 @@ module.exports = {
         "./tours.html",
         "./detail.html",
         "./src/**/*.{js,ts,jsx,tsx}",
-        "./src/layout/**/*.html",
-        "./src/components/**/*.html",
+        "./public/layout/**/*.html",     // public/layout içindeki tüm HTML dosyalarını tara
+        "./public/components/**/*.html"
     ],
     theme: {
         extend: {},
