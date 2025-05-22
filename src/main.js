@@ -2,8 +2,8 @@ import './style.css'
 import Alpine from "alpinejs"
 import axios from "axios";
 
-import carousel from "./components/carousel.js";
-import gallery from "./components/gallery.js";
+import carousel from "../public/components/carousel.js";
+import gallery from "../public/components/gallery.js";
 import getAllTours from "./js/getAllTours.js";
 import FilterTour from "./js/FilterTour.js";
 
