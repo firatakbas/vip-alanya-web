@@ -1,6 +1,12 @@
 import './style.css'
 import Alpine from "alpinejs"
 import axios from "axios";
+import Swup from "swup";
+import SwupFadeTheme from "@swup/fade-theme";
+
+const swup = new Swup({
+    plugins: [new SwupFadeTheme()]
+});
 
 import carousel from "./components/carousel.js";
 import gallery from "./components/gallery.js";
@@ -9,22 +15,17 @@ import getAllTours from "./js/getAllTours.js";
 import FilterTour from "./js/FilterTour.js";
 import tourDetail from "./js/tourDetail.js";
 
-import getAllCars from "./js/getAllCars.js";
-import FilterCar from "./js/FilterCar.js";
 
 window.Alpine = Alpine
 window.axios = axios
 
 window.getAllTours = getAllTours
 window.FilterTour = FilterTour
-
-window.getAllCars = getAllCars
-window.FilterCar = FilterCar
+window.tourDetail = tourDetail
 
 Alpine.data('carousel', carousel)
 Alpine.data('gallery', gallery)
 Alpine.data('FilterTour', FilterTour)
-Alpine.data('tourDetail', tourDetail)
 
 Alpine.start()
 

@@ -12,7 +12,7 @@
 
 <div id="app">
 
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-6xl mx-auto max-md:px-5">
         <!--Breadcrumb/Ekmek Kırıntısı-->
         <div class="px-4 my-10 flex items-center gap-1 block">
             <a href="index.html" class="font-bold">Home</a>
@@ -102,30 +102,37 @@
             </form>
 
 
-            <div class="grid grid-cols-1 md:grid-cols-2 my-10 gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 my-10 gap-3">
                 <template x-if="filtered.length > 0">
                     <template x-for="tour in filtered" :key="tour.id">
-                        <div x-if="tour" @click="window.location.href = `/detail.html?slug=${tour.slug}`" class="cursor-pointer">
+                        <div x-if="tour"
+                             @click="window.location.href = `/detail.html?slug=${tour.slug}`"
+                             class="cursor-pointer">
+
                             <div
-                                    x-transition
-                                    class="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-white rounded-lg shadow-md border border-gray-200">
+                                    x-transition:enter="transition ease-out duration-500"
+                                    x-transition:enter-start="opacity-0 transform -translate-y-2"
+                                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                                    class="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-white rounded-lg shadow-md border border-gray-200"
+                            >
 
                                 <img src="https://placehold.co/200x200/EEE/31343C"
                                      alt="Ürün Görseli"
                                      class="w-40 h-40 object-cover rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300">
 
-                                <div class="flex-1 space-y-2">
+                                <div class="flex-1 space-y-2 px-2 truncate">
                                     <h4 class="font-semibold text-2xl text-gray-900" x-text="tour.title"></h4>
                                     <p class="text-gray-600 text-justify text-sm leading-relaxed"
                                        x-text="tour.description"></p>
 
                                     <div class="flex flex-wrap items-center justify-between mt-4">
-                        <span class="inline-block text-sm font-semibold bg-orange-100 text-orange-700 px-3 py-1 rounded-full">
-                            Kişi Başı Fiyat: <span x-text="tour.price + '$'"></span>
-                        </span>
-                                        <span class="inline-block text-xs font-medium bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full uppercase tracking-wide"
-                                              x-text="tour.category.replace(/([a-z])([A-Z])/g, '$1 $2')">
-                        </span>
+                                        <span class="inline-block text-sm font-semibold bg-orange-100 text-orange-700 px-3 py-1 rounded-full">
+                                            Kişi Başı Fiyat: <span x-text="tour.price + '$'"></span>
+                                        </span>
+                                        <span
+                                                class="inline-block text-xs font-medium bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full uppercase tracking-wide"
+                                                x-text="tour.category.replace(/([a-z])([A-Z])/g, '$1 $2')">
+                                        </span>
                                     </div>
                                 </div>
                             </div>

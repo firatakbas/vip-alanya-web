@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Transfer Hizmetleri</title>
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<div id="app">
+    <div class="max-w-6xl mx-auto max-md:px-5">
+        <!-- Ekmek Kırıntısı -->
+        <div class="px-4 my-10 flex items-center gap-1 block">
+            <a href="index.html" class="font-bold">Anasayfa</a>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 stroke-width="1.5" stroke="currentColor" class="size-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+            </svg>
+            <span class="text-gray-600 font-normal">Transfer</span>
+        </div>
+
+        <!-- Galeri -->
+        <div id="gallery"></div>
+
+        <!-- Filtreleme -->
+        <section class="max-w-6xl mx-auto my-20" x-data="FilterTransfer()" x-init="init()">
+            <!-- Başlık -->
+            <div class="text-center mb-12 space-y-7">
+                <h2 class="text-4xl md:text-5xl font-bold leading-tight">
+                    Konforlu Ulaşım İçin,<br class="hidden sm:inline"> Transferinizi Şimdi Ayarlayın!
+                </h2>
+                <div class="mt-3 h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-800 mx-auto rounded-full"></div>
+                <span class="block mt-2 text-md text-gray-600 uppercase tracking-wide font-semibold">Transfer Seçenekleri</span>
+            </div>
+
+            <!-- Form -->
+            <form @submit.prevent="filterTransfers()" class="p-10 rounded-lg shadow-xl bg-white">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+                    <div>
+                        <label class="text-sm" for="pickup_location">Alış Noktası</label>
+                        <input x-model="filters.pickup_location" type="text" id="pickup_location"
+                               class="border-0 border-b-2 p-2 rounded-md w-full" placeholder="Havaalanı, Otel..."/>
+                    </div>
+                    <div>
+                        <label class="text-sm" for="dropoff_location">Varış Noktası</label>
+                        <input x-model="filters.dropoff_location" type="text" id="dropoff_location"
+                               class="border-0 border-b-2 p-2 rounded-md w-full" placeholder="Otel, Şehir Merkezi..."/>
+                    </div>
+                    <div>
+                        <label class="text-sm" for="transfer_date">Transfer Tarihi</label>
+                        <input x-model="filters.transfer_date" type="date" id="transfer_date"
+                               class="border-0 border-b-2 p-2 rounded-md w-full"/>
+                    </div>
+                    <div>
+                        <label class="text-sm" for="passengers">Yolcu Sayısı</label>
+                        <select x-model="filters.passengers" id="passengers"
+                                class="border-0 border-b-2 p-2 rounded-md w-full">
+                            <option value="">Tümü</option>
+                            <option value="1">1 Kişi</option>
+                            <option value="2">2 Kişi</option>
+                            <option value="3">3 Kişi</option>
+                            <option value="4">4 Kişi</option>
+                            <option value="5+">5+ Kişi</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-sm" for="vehicle_type">Araç Tipi</label>
+                        <select x-model="filters.vehicle_type" id="vehicle_type"
+                                class="border-0 border-b-2 p-2 rounded-md w-full">
+                            <option value="">Tümü</option>
+                            <option value="VIP">VIP</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="Minivan">Minivan</option>
+                            <option value="Otobüs">Otobüs</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit"
+                            class="bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-colors block mt-4 px-4 py-2">
+                        Transferleri Göster
+                    </button>
+                </div>
+            </form>
+
+            <!-- Listeleme -->
+            <div class="grid grid-cols-1 md:grid-cols-2 my-10 gap-3">
+                <template x-if="filtered.length > 0">
+                    <template x-for="transfer in filtered" :key="transfer.id">
+                        <div x-if="transfer"
+                             @click="window.location.href = `/transfer-detail.html?slug=${transfer.slug}`"
+                             class="cursor-pointer">
+
+                            <div
+                                    x-transition:enter="transition ease-out duration-500"
+                                    x-transition:enter-start="opacity-0 transform -translate-y-2"
+                                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                                    class="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-white rounded-lg shadow-md border border-gray-200"
+                            >
+                                <img :src="transfer.image" alt="Transfer Aracı"
+                                     class="w-40 h-40 object-cover rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300">
+
+                                <div class="flex-1 space-y-2 px-2 truncate">
+                                    <h4 class="font-semibold text-2xl text-gray-900" x-text="transfer.name"></h4>
+                                    <p class="text-gray-600 text-justify text-sm leading-relaxed" x-text="transfer.description"></p>
+
+                                    <div class="flex flex-wrap items-center justify-between mt-4">
+                                        <span class="inline-block text-sm font-semibold bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
+                                            Fiyat: <span x-text="transfer.price + '₺'"></span>
+                                        </span>
+                                        <span class="inline-block text-xs font-medium bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full uppercase tracking-wide"
+                                              x-text="transfer.vehicle_type">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+
+            <template x-if="filtered.length === 0">
+                <div class="text-center text-gray-600 font-medium">
+                    Uygun transfer bulunamadı.
+                </div>
+            </template>
+
+            <template x-if="loading">
+                <div class="text-center text-blue-500 my-5">
+                    Yükleniyor...
+                </div>
+            </template>
+        </section>
+    </div>
+</div>
+
+<div id="footer"></div>
+
+<script type="module" src="/src/main.js"></script>
+
+</body>
+</html>

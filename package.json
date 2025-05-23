@@ -15,7 +15,9 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
+    "@swup/fade-theme": "^2.0.1",
     "alpinejs": "^3.14.9",
-    "axios": "^1.9.0"
+    "axios": "^1.9.0",
+    "swup": "^4.8.2"
   }
 }
