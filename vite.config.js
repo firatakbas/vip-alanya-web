@@ -8,7 +8,9 @@ export default defineConfig({
             input: {
                 main: 'index.html',
                 tours: 'tours.html', // <-- Kök dizinde olduğu için sadece dosya adı
-                detail: 'detail.html' // <-- Kök dizinde olduğu için sadece dosya adı
+                cars: 'cars.html', // <-- Kök dizinde olduğu için sadece dosya adı
+                transfert: 'transfert.html', // <-- Kök dizinde olduğu için sadece dosya adı
+                rezervision: 'rezervision.html' // <-- Kök dizinde olduğu için sadece dosya adı
             }
         }
     }
