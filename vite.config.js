@@ -6,11 +6,12 @@ export default defineConfig({
     build: {
         rollupOptions: {
             input: {
-                main: 'index.html',
-                tours: 'tours.html', // <-- Kök dizinde olduğu için sadece dosya adı
-                cars: 'cars.html', // <-- Kök dizinde olduğu için sadece dosya adı
-                transfert: 'transfert.html', // <-- Kök dizinde olduğu için sadece dosya adı
-                rezervision: 'rezervision.html' // <-- Kök dizinde olduğu için sadece dosya adı
+                main: 'index.html', // <-- Kök dizinde olduğu için sadece dosya adı
+                tours: 'tours.html',
+                cars: 'cars.html',
+                transfert: 'transfert.html',
+                rezervision: 'rezervision.html',
+                detail: 'detail.html',
             }
         }
     }
